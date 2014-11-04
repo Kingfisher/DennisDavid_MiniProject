@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+      Sign Up
+    </title>
+    <!-- Bootstrap core CSS -->
+    <link href="static/bootstrap-3.2.0-dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="signin.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="container">
+      <form class="form-login" role="form">
+	<h2 class="form-login-heading">Sign up here!</h2>
+	<input type="username" class="form-control" placeholder="Choose a username" required autofocus>
+	<input type="password" class="form-control" placeholder="Choose a password" required>
+	<button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
+      </form>
+      <a href="{{ url_for('login') }}"><button>Log in</button></a>
+    </div>
+  </body>
+</html>
