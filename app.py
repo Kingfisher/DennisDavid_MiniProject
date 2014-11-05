@@ -25,7 +25,7 @@ def signup():
         username = request.form["username"]
         password = request.form["password"]
         if not database.addUser(username,password):
-            flash("Unregistered username, too short username, or too short password.")
+            flash("Registered username, too short username, or too short password.")
             return render_template("signup.html")
         flash("Great! You've registered! Now you can log in.")
         return redirect(url_for("login"))
