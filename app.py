@@ -1,38 +1,45 @@
-from flask import Flask, flash, redirect, render_template, request, url_for
+from flask import Flask, session, flash, redirect, render_template, request, url_for
 import database
+import os
 app = Flask(__name__)
+app.secret_key = os.urandom(24)
 
 @app.route('/', methods=["GET","POST"])
 @app.route('/login', methods=["GET","POST"])
 def login():
-    if request.method == "GET":
+    error = None
+    if request.method == "POST":
+        username = request.form["username"]
+        password = request.form["password"]
+        if not validate(username,password):
+            error = 'Unregistered username or incorrect password'
+        flash("You've logged in successfully")
         return render_template("private.html")
     return render_template("login.html")
 
 @app.route('/signup', methods=["GET","POST"])
 def signup():
-    flash("hi")
-    if request.method == "GET":
-        username1 = request.form["username"]
-        password1 = request.form["password"]
-        if (database.checkUsername(username1) and database.checkPassword(password1)):
-            flash('Sorry, that username/password has already been taken')
+    error = None
+    if request.method == "POST":
+        username = request.form["username"]
+        password = request.form["password"]
+        if not database.addUser(username,password):
+            error = 'Unregistered username, too short username, or too short password'
             return render_template("signup.html")
-        else:
-            database.addUser(username1,password1)
+        flash("Great! You've registered! Now you can log in.")
         return render_template("login.html")
-    flash("hi")
     return render_template("signup.html")
 @app.route('/posts/private',methods=["GET","POST"])
 def public():
-    pass
+    return render_template("public.html")
 @app.route('/posts/public',methods=["GET","POST"])
 def private():
-    pass
+    return render_template("private.html")
 @app.route('/logout')
 def logout():
-    pass
-    
+    session.pop('username', None)
+    return redirect(url_for('login'))    
+
 if __name__ == '__main__':
     app.debug=True
     app.run()
