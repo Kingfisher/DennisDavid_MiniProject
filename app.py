@@ -11,7 +11,7 @@ def login():
     if request.method == "POST":
         username = request.form["username"]
         password = request.form["password"]
-        if not validate(username,password):
+        if (validate(username,password) == False ):
             error = 'Unregistered username or incorrect password'
         flash("You've logged in successfully")
         return render_template("private.html")
@@ -23,7 +23,7 @@ def signup():
     if request.method == "POST":
         username = request.form["username"]
         password = request.form["password"]
-        if not database.addUser(username,password):
+        if (database.addUser(username,password) == False):
             error = 'Unregistered username, too short username, or too short password'
             return render_template("signup.html")
         flash("Great! You've registered! Now you can log in.")
