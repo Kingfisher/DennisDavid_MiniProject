@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+      Log In
+    </title>
+    <!-- Bootstrap core CSS -->
+    <link href="static/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="static/dist/css/signin.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="container">
+      <form class="form-login" role="form">
+        <h2 class="form-login-heading">Log in here!</h2>
+        <input type="username" class="form-control" placeholder="Username" required autofocus>
+        <input type="password" class="form-control" placeholder="Password" required>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" value="remember-me"> Remember me
+          </label>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
+      </form>
+      <br>
+      If you don't have an account, sign up!
+      <br>
+      <a href="{{ url_for('signup') }}"><button>Sign up</button></a>
+    </div> <!== /container -->
+  </body>
+</html>
