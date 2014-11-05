@@ -27,27 +27,15 @@ def signup():
     if request.method == "POST":
         username = request.form["username"]
         password = request.form["password"]
-<<<<<<< HEAD
         if not database.addUser(username,password):
             flash("Registered username, too short username, or too short password.")
             return redirect(url_for('signup'))
-=======
-<<<<<<< HEAD
-        if not database.addUser(username,password):
-            flash("Registered username, too short username, or too short password.")
-        if (database.addUser(username,password) == False):
-            error = 'Unregistered username, too short username, or too short password'
-=======
-
         if not database.addUser(username,password):
             flash("Registered username, too short username, or too short password.")
 
         if (database.addUser(username,password) == False):
             error = 'Unregistered username, too short username, or too short password'
-
->>>>>>> origin/master
             return render_template("signup.html")
->>>>>>> origin/master
         flash("Great! You've registered! Now you can log in.")
         return redirect(url_for('login'))
     return render_template("signup.html")
