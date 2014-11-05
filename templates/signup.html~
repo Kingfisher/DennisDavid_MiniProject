@@ -19,7 +19,9 @@
 	<button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
       </form>
       <br>
+      <font color="white">
       Log in when you've created an account:
+      </font>
       <br>
       <a href="{{ url_for('login') }}"><button>Log in</button></a>
     </div>

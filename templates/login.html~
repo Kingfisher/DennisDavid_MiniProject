@@ -12,8 +12,8 @@
     <div class="container">
       <form class="form-login" role="form">
         <h2 class="form-login-heading">Log in here!</h2>
-        <input type="username" class="form-control" placeholder="Username" required autofocus>
-        <input type="password" class="form-control" placeholder="Password" required>
+        <input type="username" name = "username" class="form-control" placeholder="Username" required autofocus>
+        <input type="password" name = "password" class="form-control" placeholder="Password" required>
         <div class="checkbox">
           <label>
             <input type="checkbox" value="remember-me"> Remember me
@@ -22,9 +22,11 @@
         <button class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
       </form>
       <br>
+      <font color="white">
       If you don't have an account, sign up!
+      </font>
       <br>
       <a href="{{ url_for('signup') }}"><button>Sign up</button></a>
-    </div> <!== /container -->
+    </div>
   </body>
 </html>

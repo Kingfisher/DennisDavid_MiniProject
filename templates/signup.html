@@ -12,6 +12,11 @@
     <div class="container">
       <form class="form-login" role="form">
 	<h2 class="form-login-heading">Sign up here!</h2>
+	{% extends "layout.html" %}
+	{% block body %}
+	{% if error %}
+	<p class=error><strong>Error:</strong> {{ error }}
+	  {% endif %}
 	<input type="username" class="form-control" placeholder="Choose a username" required autofocus>
 	<input type="password" class="form-control" placeholder="Choose a password" required>
 	<br>
@@ -26,4 +31,5 @@
       <a href="{{ url_for('login') }}"><button>Log in</button></a>
     </div>
   </body>
+  {% endblock %}
 </html>

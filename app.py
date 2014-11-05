@@ -2,25 +2,31 @@ from flask import Flask, session, flash, redirect, render_template, request, url
 import database
 import os
 app = Flask(__name__)
+app.secret_key = os.urandom(24)
 
 @app.route('/', methods=["GET","POST"])
 @app.route('/login', methods=["GET","POST"])
 def login():
+    error = None
     if request.method == "POST":
         username = request.form["username"]
         password = request.form["password"]
-        return render_template("login.html")
+        if not validate(username,password):
+            error = 'Unregistered username or incorrect password'
+        flash("You've logged in successfully")
+        return render_template("private.html")
     return render_template("login.html")
 
 @app.route('/signup', methods=["GET","POST"])
 def signup():
-    flash("hi")
+    error = None
     if request.method == "POST":
         username = request.form["username"]
         password = request.form["password"]
         if not database.addUser(username,password):
-            flash('Sorry, that username/password has already been taken')
+            error = 'Unregistered username, too short username, or too short password'
             return render_template("signup.html")
+        flash("Great! You've registered! Now you can log in.")
         return render_template("login.html")
     return render_template("signup.html")
 @app.route('/posts/private',methods=["GET","POST"])
@@ -33,7 +39,6 @@ def private():
 def logout():
     session.pop('username', None)
     return redirect(url_for('login'))    
-app.secret_key = os.urandom(24)
 
 if __name__ == '__main__':
     app.debug=True
