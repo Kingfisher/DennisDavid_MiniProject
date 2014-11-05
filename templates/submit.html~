@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+      Submit your post!
+    </title>
+    <link href="static/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="static/dist/css/signin.css" rel="stylesheet">
+    <style>
+      body {text-align:center;}
+    </style>
+  </head>
+  <body>
+    <form form="form" method="POST">
+      <fieldset>
+        <legend>Write a Post:</legend>
+	<textarea  rows="5" type="text" class="form-control" name="post" placeholder="Write your post here..."></textarea><br><br>
+	Make your post either public or private<br>
+	<input type="radio" name="type" value="public">Public
+	<input type="radio" name="type" value="private">Private
+	<br>
+	<button type="submit">Post</button>
+      </fieldset>
+    </form>
+    Go to:<br>
+    <a href="{{ url_for('private') }}"><button>Private posts</button></a><br>
+    <a href="{{ url_for('public') }}"><button>Public posts</button></a>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <a href="{{ url_for('logout') }}"><button>Log out</button></a>
+  </body>
+</html>

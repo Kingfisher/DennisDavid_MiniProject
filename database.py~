@@ -10,13 +10,14 @@ def checkPassword(passwordToCheck):
     return len(passwordToCheck) > 0
 
 def checkUsername(usernameToCheck):
-    return ((len(usernameToCheck) > 0) and (users.find({"username":username}).count()==0))
+    return ((len(usernameToCheck) > 0) and (users.find({"username":usernameToCheck}).count()==0))
 
 def checkPost(postToCheck):
     return len(postToCheck) > 0
 
 def addUser(username, password):
-    if ((checkUsername(username) == False) or (checkPassword(password) == False)):
+    record = users.find({"username":username})
+    if ((checkUsername(username) == False) or (checkPassword(password) == False)) or (record.count() != 0):
         return False
     else:
         newUser = {"username": username,"password": hashlib.sha512(password).hexdigest()}

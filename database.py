@@ -53,6 +53,7 @@ def getPosts(privacy):
         miniPostList = []
         miniPostList.append(post['username'])
         miniPostList.append(post['post'])
+        miniPostList.append(post['privacy'])
         postList.append(miniPostList)
     return postList
         
@@ -61,3 +62,5 @@ def getPublicPosts():
 
 def getPrivatePosts():
     return getPosts("Private")
+
+
