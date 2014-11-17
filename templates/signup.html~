@@ -15,7 +15,7 @@
 	{% extends "layout.html" %}
 	{% block body %}
 	{% if error %}
-	<p class=error><strong>Error:</strong> {{ error }}
+	<p class=error><font color="red"><strong>Error:</strong></font> {{ error }}
 	  {% endif %}
 	<input type="username" name = "username" class="form-control" placeholder="Choose a username" required autofocus>
 	<input type="password" name = "password" class="form-control" placeholder="Choose a password" required>

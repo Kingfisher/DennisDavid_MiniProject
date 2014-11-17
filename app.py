@@ -30,19 +30,15 @@ def signup():
         if not database.addUser(username,password):
             flash("Registered username, too short username, or too short password.")
             return redirect(url_for('signup'))
-        if not database.addUser(username,password):
-            flash("Registered username, too short username, or too short password.")
-
-        if (database.addUser(username,password) == False):
-            error = 'Unregistered username, too short username, or too short password'
-            return render_template("signup.html")
         flash("Great! You've registered! Now you can log in.")
         return redirect(url_for('login'))
     return render_template("signup.html")
+
 @app.route('/posts/public',methods=["GET","POST"])
 def public():
     posts = database.getPublicPosts()
     return render_template("public.html", posts = posts)
+
 @app.route('/posts/private',methods=["GET","POST"])
 def private():
     if 'username' in session:
@@ -51,6 +47,7 @@ def private():
         return render_template("private.html", posts = posts, username = username)
     flash("You are not logged in.")
     return redirect(url_for('login'))
+
 @app.route('/posts/submit',methods=["GET","POST"])
 def submit():
     if 'username' in session:
@@ -62,7 +59,7 @@ def submit():
             return redirect(url_for(request.form["type"])) 
         return render_template("submit.html") 
     flash("You are not logged in")
-    return render_template("login.html")
+    return redirect(url_for('login'))
 
 @app.route('/logout')
 def logout():
